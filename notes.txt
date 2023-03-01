@@ -1,0 +1,50 @@
+this project tries to stich wagtail to gatsby.
+
+
+First build wagtail with GraphQl
+
+Then, check how to consume it.
+
+
+-root
+       1. MySite
+       2. blog
+       3. Home
+       4. Frontend
+
+
+
+Commands:
+pip3 install wagtail wagtail_grapple
+wagtail start mysite .
+python manage.py startapp blog
+copy Blog models, URLS, Base.py
+
+python manage.py makemigrations && python manage.py migrate && python manage.py createsuperuser
+
+
+Nodes commands:$
+
+npm install -g gatsby-cli
+gatsby new frontend
+cd frontend
+npm run develop
+
+GraphQl functionable queries:
+{
+    pages {
+        ...on BlogPage {
+            title
+            date
+            author
+            body {
+                rawValue
+                ...on ImageChooserBlock {
+                    image {
+                        src
+                    }
+                }
+            }
+        }
+    }
+}
